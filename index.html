@@ -1,23 +1,448 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+
+    <!-- JSON-LD Structured Data for FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "치과 치료 비용이 병원마다 다른 이유는 무엇인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "치과 치료 비용은 환자의 상태, 사용하는 재료(임플란트 픽스처 종류, 충치 치료 재료), 의료진의 경력과 숙련도, 병원의 위치(서울/지방), 건강보험 적용 여부 등 다양한 요인에 따라 달라집니다. 특히 비급여 항목은 병원별로 가격을 자유롭게 책정할 수 있어 가격 차이가 큽니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "임플란트 비용을 절약할 수 있는 방법이 있나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "임플란트 비용을 절약하려면 만 65세 이상 국민건강보험 적용을 확인하고, 여러 치과에서 견적을 비교해 보세요. 또한, 치과 이벤트나 프로모션을 활용하거나, 치아 보험 가입을 고려할 수 있습니다. 다만, 가격이 '싼곳'을 무조건 선택하기보다, 의료진의 전문성과 사후 관리 시스템을 함께 고려하는 것이 중요합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "치아 교정의 평균 비용과 기간은 어떻게 되나요?",
+          "@id": "#교정-비용-답변",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "치아 교정 비용은 교정 장치의 종류(메탈, 세라믹, 설측, 인비절라인 등)와 치료 난이도에 따라 크게 달라집니다. 평균적으로 메탈 교정은 300~500만 원, 인비절라인은 500~800만 원 선에서 형성됩니다. 치료 기간은 보통 1.5년~2년이며, 정밀 진단 후 정확한 견적을 받아보는 것이 좋습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "충치치료 비용은 왜 재료에 따라 가격 차이가 큰가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "충치치료에 사용되는 재료는 아말감, 레진, 인레이, 크라운 등 다양합니다. 아말감은 건강보험 적용으로 저렴하지만 심미성이 떨어지고, 레진은 심미성이 뛰어나지만 비급여입니다. 인레이와 크라운은 충치 범위가 클 때 사용되며, 금(골드)이나 PFM(메탈+도자기) 등 재료에 따라 내구성, 심미성, 가격이 모두 달라집니다."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        /* CSS Variable Definition (Soft and Professional Palette) */
+        :root {
+            --primary-color: #0A6EBD; /* Deep Blue, professional and trustworthy */
+            --secondary-color: #00A86B; /* Soft Green, health and fresh feel */
+            --accent-color: #FF5733; /* Orange/Red for emphasis */
+            --text-color: #333333; /* Standard dark text */
+            --text-light: #555555; /* Lighter text for details */
+            --bg-light: #F8F9FA; /* Light gray background */
+            --bg-white: #FFFFFF; /* White background for sections */
+            --border-color: #E0E0E0; /* Light border */
+            --header-bg: #EAF3F9; /* Very light blue header background */
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+        
+        /* Base Styling */
+        body { font-family: 'Noto Sans KR', sans-serif; margin: 0; padding: 0; background-color: var(--bg-light); color: var(--text-color); line-height: 1.8; font-size: 16px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; box-sizing: border-box; }
+        
+        /* Header and Navigation */
+        header { background-color: var(--header-bg); padding: 25px 0; border-bottom: 3px solid var(--primary-color); }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+        header h1 { margin: 0; font-size: 2.2em; font-weight: 900; color: var(--primary-color); letter-spacing: -1px; }
+        header h1 a { text-decoration: none; color: inherit; }
+
+        /* Hero Section (Main CTA) */
+        .hero { background: linear-gradient(135deg, var(--primary-color) 0%, #0093E9 100%); color: #fff; text-align: center; padding: 80px 20px; border-radius: 0 0 15px 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .hero h2 { font-size: 2.8em; margin-bottom: 10px; font-weight: 700; line-height: 1.3; }
+        .hero p { font-size: 1.4em; margin-bottom: 30px; font-weight: 300; opacity: 0.9; }
+
+        /* CTA Button */
+        .cta-btn { background-color: var(--secondary-color); color: #fff; padding: 18px 40px; font-size: 1.4em; font-weight: bold; border: none; border-radius: 50px; cursor: pointer; transition: background-color 0.3s, transform 0.2s; box-shadow: 0 6px 15px rgba(0, 168, 107, 0.4); text-decoration: none; display: inline-block; }
+        .cta-btn:hover { background-color: #007f5a; transform: translateY(-3px); }
+
+        /* Consultation Form Box */
+        .consult-form-box { background-color: var(--bg-white); padding: 30px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); margin-top: -50px; position: relative; z-index: 10; border: 1px solid var(--border-color); }
+        .consult-form-box h3 { color: var(--primary-color); text-align: center; font-size: 1.8em; margin-bottom: 25px; font-weight: 700; }
+        .consult-form-box form { display: grid; grid-template-columns: 1fr; gap: 15px; }
+        .consult-form-box label { display: block; margin-bottom: 5px; font-weight: 500; color: var(--text-light); }
+        .consult-form-box input[type="text"], .consult-form-box input[type="tel"], .consult-form-box select { width: 100%; padding: 14px; border: 1px solid var(--border-color); border-radius: 8px; box-sizing: border-box; font-size: 1em; }
+        .consult-form-box button { margin-top: 10px; }
+
+        /* Content Sections */
+        .content-section { background-color: var(--bg-white); padding: 50px 0; margin-top: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .content-section h2 { font-size: 2.5em; color: var(--primary-color); padding-bottom: 15px; margin-bottom: 30px; text-align: center; font-weight: 700; border-bottom: 3px solid var(--border-color); line-height: 1.2; }
+        .content-section h3 { font-size: 1.8em; color: var(--secondary-color); margin-top: 40px; margin-bottom: 15px; font-weight: 700; border-left: 5px solid var(--secondary-color); padding-left: 10px; line-height: 1.4; }
+        .content-section p { margin-bottom: 25px; color: var(--text-light); text-align: justify; }
+
+        /* Feature Grid */
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; text-align: center; margin-top: 30px; }
+        .feature-grid .item { background-color: var(--bg-light); padding: 30px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: transform 0.3s; }
+        .feature-grid .item:hover { transform: translateY(-5px); }
+        .feature-grid .item img { width: 60px; height: 60px; margin-bottom: 15px; }
+        .feature-grid .item h4 { font-size: 1.3em; margin-top: 0; color: var(--primary-color); font-weight: 700; }
+
+        /* Keyword List */
+        .keyword-list { list-style: none; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; margin-top: 30px; }
+        .keyword-list li { background-color: var(--primary-color); color: #fff; padding: 10px 20px; margin: 5px; border-radius: 20px; font-weight: 500; font-size: 0.9em; transition: background-color 0.3s; }
+        .keyword-list li:hover { background-color: var(--secondary-color); }
+
+        /* FAQ Section */
+        .faq-item { border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 15px; overflow: hidden; }
+        .faq-item h3 { cursor: pointer; display: flex; justify-content: space-between; align-items: center; background-color: #F0F4F7; padding: 18px 25px; margin: 0; font-size: 1.1em; color: var(--primary-color); font-weight: 700; }
+        .faq-item h3::after { content: '+'; font-size: 1.5em; color: var(--secondary-color); transition: transform 0.3s; }
+        .faq-item.active h3 { background-color: #EAF3F9; border-bottom: 1px solid var(--border-color); }
+        .faq-item.active h3::after { content: '-'; transform: rotate(180deg); }
+        .faq-item p { display: none; padding: 15px 25px 20px; color: var(--text-light); line-height: 1.7; font-size: 0.95em; }
+        .faq-item.active p { display: block; }
+
+        /* Tables and Data Presentation */
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background-color: #fff; }
+        table th, table td { border: 1px solid var(--border-color); padding: 15px; text-align: center; font-size: 0.95em; }
+        table th { background-color: var(--header-bg); color: var(--primary-color); font-weight: 700; font-size: 1em; }
+
+        /* Footer */
+        footer { background-color: var(--primary-color); color: #fff; text-align: center; padding: 40px 20px; font-size: 0.9em; line-height: 1.6; }
+        footer a { color: #fff; text-decoration: none; margin: 0 10px; opacity: 0.8; }
+        footer a:hover { text-decoration: underline; opacity: 1; }
+
+        /* Mobile Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero h2 { font-size: 2.2em; }
+            .hero p { font-size: 1.2em; }
+            .cta-btn { padding: 15px 30px; font-size: 1.2em; }
+            .consult-form-box { margin-top: -30px; padding: 25px; }
+            .content-section h2 { font-size: 2em; }
+            .content-section h3 { font-size: 1.6em; }
+            .feature-grid { grid-template-columns: 1fr; }
+            table th, table td { padding: 10px; font-size: 0.9em; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1><a href="/">치과비용 비교센터</a></h1>
+            <nav>
+                <!-- 추가 탐색 링크 (예: 임플란트, 교정, 충치) -->
+            </nav>
+        </div>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <section class="hero">
+            <div class="container">
+                <h2>2026년 치과비용, 더 이상 비싸게 내지 마세요!</h2>
+                <p>임플란트, 치아교정, 충치치료 등 모든 치과 치료의 평균 비용을 확인하고, 비용 절약 팁과 합리적인 선택 기준을 안내해 드립니다.</p>
+            </div>
+            <!-- Consultation form placed within hero section for maximum visibility -->
+            <div class="container">
+                <div class="consult-form-box">
+                    <h3>내게 맞는 치과 치료 비용 실시간 견적 문의</h3>
+                    <form action="#" method="post">
+                        <label for="name">이름</label>
+                        <input type="text" id="name" placeholder="이름을 입력하세요" required>
+                        <label for="phone">연락처</label>
+                        <input type="tel" id="phone" placeholder="휴대폰 번호를 입력하세요" required>
+                        <label for="interest">관심 치료 항목</label>
+                        <select id="interest" required>
+                            <option value="">선택하세요</option>
+                            <option value="임플란트">임플란트</option>
+                            <option value="치아교정">치아교정</option>
+                            <option value="충치치료">충치치료</option>
+                            <option value="기타">기타</option>
+                        </select>
+                        <label for="region">거주 지역</label>
+                        <input type="text" id="region" placeholder="예: 서울 강남구" required>
+                        <button type="submit" class="cta-btn">무료 상담 신청하고 예상 비용 확인하기</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <h2>왜 치과비용은 병원마다 천차만별인가요?</h2>
+                <p>
+                    치과 치료를 앞둔 많은 분들이 '치과비용 싼곳'을 찾지만, 정작 병원마다 제시하는 '견적'에 혼란스러워합니다. 임플란트, 치아교정, 충치치료 등 대부분의 치과 치료는 비급여 항목이 많아 병원별로 가격을 자유롭게 책정할 수 있습니다. <br><br>
+                    <strong>비용 차이의 주요 요인</strong>은 크게 다음과 같습니다.
+                </p>
+                <div class="feature-grid">
+                    <div class="item">
+                        <img src="https://via.placeholder.com/60/0A6EBD/fff?text=I1" alt="전문성 아이콘">
+                        <h4>의료진의 전문성 및 경력</h4>
+                        <p>의사의 숙련도와 진료 경험은 치료 결과에 직접적인 영향을 미칩니다. 특히 고난이도 치료일수록 경력이 많은 의사가 있는 곳은 비용이 높을 수 있습니다.</p>
+                    </div>
+                    <div class="item">
+                        <img src="https://via.placeholder.com/60/0A6EBD/fff?text=I2" alt="재료 품질 아이콘">
+                        <h4>사용 재료의 품질</h4>
+                        <p>임플란트의 픽스처 종류, 충치 치료 시 사용하는 레진이나 금니의 품질 등에 따라 원가가 달라져 최종 '금액'에 영향을 줍니다.</p>
+                    </div>
+                    <div class="item">
+                        <img src="https://via.placeholder.com/60/0A6EBD/fff?text=I3" alt="지역 아이콘">
+                        <h4>병원 위치 및 규모</h4>
+                        <p>서울 강남이나 주요 도시 번화가에 위치한 치과, 대형 치과병원은 임대료와 인건비 등의 운영 '비용'이 높아 가격이 더 비싼 경향이 있습니다.</p>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 60px;">함께 많이 찾는 키워드</h3>
+                <ul class="keyword-list">
+                    <li>#치과비용싼곳</li>
+                    <li>#임플란트가격비교</li>
+                    <li>#치아교정후기</li>
+                    <li>#충치치료레진가격</li>
+                    <li>#치아보험장단점</li>
+                    <li>#치과치료평균금액</li>
+                    <li>#2026치과보험추천</li>
+                    <li>#치과견적문의</li>
+                    <li>#치과치료내돈내산</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section class="content-section" style="background-color: var(--bg-light); padding: 50px 0;">
+            <div class="container">
+                <h2 id="임플란트">임플란트 비용 상세 가이드: 2026년 평균 금액 및 절약 팁</h2>
+                <p>
+                    임플란트는 상실된 치아를 대신하여 인공 치근을 잇몸뼈에 심는 고난이도 치료입니다. '임플란트 비용'은 환자의 잇몸 상태, 사용 재료, 뼈 이식 여부에 따라 '견적'이 크게 달라집니다. 2026년 기준, 임플란트 1개당 '평균 금액'은 100만 원에서 200만 원 사이로 형성되어 있습니다. '치과비용 싼곳'을 찾기보다, 장기적인 관점에서 '장점과 단점'을 모두 고려해야 합니다.
+                </p>
+
+                <h3>1. 임플란트 종류별 평균 비용 및 특징 비교 (2026년 예상)</h3>
+                <p>임플란트는 픽스처(인공 치근), 지대주(어버트먼트), 보철물(크라운)로 구성됩니다. 이 중 픽스처와 보철물의 재료가 비용을 결정하는 가장 큰 요인입니다.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>종류</th>
+                            <th>특징</th>
+                            <th>평균 금액 (1개당)</th>
+                            <th>장점</th>
+                            <th>단점</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>국산 임플란트 (가장 일반적)</td>
+                            <td>오스템, 덴티움 등 국내사 제품. 높은 점유율과 임상 데이터 보유.</td>
+                            <td>100만원 ~ 150만원</td>
+                            <td>가격이 저렴함, 사후 관리가 용이함.</td>
+                            <td>수입산 대비 인지도나 일부 내구성이 낮을 수 있음.</td>
+                        </tr>
+                        <tr>
+                            <td>수입산 임플란트 (프리미엄)</td>
+                            <td>스트라우만, 아스트라 등 스위스/스웨덴 제품. 생체 친화성 우수.</td>
+                            <td>150만원 ~ 250만원</td>
+                            <td>높은 골융합력, 장기적인 안정성, 글로벌 인지도.</td>
+                            <td>비용이 비쌈, 국내 재고 확보에 어려움이 있을 수 있음.</td>
+                        </tr>
+                        <tr>
+                            <td>뼈 이식 동반 임플란트</td>
+                            <td>잇몸뼈가 부족한 경우 뼈 이식(골이식)이 추가됨.</td>
+                            <td>150만원 ~ 300만원 이상</td>
+                            <td>뼈 부족으로 임플란트 불가능한 환자에게 필수.</td>
+                            <td>추가 '비용' 발생 및 치료 기간 연장.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>2. 임플란트 비용 절약 팁: 보험 및 할인 정보</h3>
+                <ul>
+                    <li><strong>국민건강보험 적용:</strong> 만 65세 이상 환자는 평생 2개의 임플란트에 대해 건강보험이 적용됩니다. 본인 부담률이 30%로 낮아져 '저렴하게' 치료받을 수 있습니다. [출처: 보건복지부]</li>
+                    <li><strong>치아 보험 활용:</strong> 개인 치아 보험에 가입되어 있다면, 임플란트 1개당 정액 보장 금액(예: 100~200만 원)을 지원받을 수 있습니다. '치아 보험 가입' 전 보장 내역을 반드시 확인하세요.</li>
+                    <li><strong>치과 이벤트 및 프로모션:</strong> 많은 치과에서 신규 환자 유치를 위해 이벤트를 진행합니다. 다만, '임플란트 싼곳'을 찾을 때 이벤트 기간이 아닌 평소 가격도 확인하여 '장단점'을 비교하는 것이 좋습니다.</li>
+                </ul>
+
+                <h3 id="치아교정">치아교정 비용 가이드: 종류별 금액 차이점 및 장단점</h3>
+                <p>
+                    치아교정은 심미적 개선뿐만 아니라 씹는 기능(저작 기능) 향상, 구강 위생 개선 등 다양한 '장점'이 있습니다. '치아교정 비용'은 장치 종류와 치료 난이도에 따라 '예상' 금액이 크게 달라지며, 치료 기간도 '장단점'을 고려해야 합니다.
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>교정 장치 종류</th>
+                            <th>특징</th>
+                            <th>평균 금액 (전체 교정)</th>
+                            <th>장점</th>
+                            <th>단점</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>메탈 교정</td>
+                            <td>가장 고전적인 방식, 금속 재료 사용.</td>
+                            <td>300만원 ~ 500만원</td>
+                            <td>'저렴한' 비용, 확실한 교정력.</td>
+                            <td>심미성이 떨어짐, 통증 및 이물감.</td>
+                        </tr>
+                        <tr>
+                            <td>세라믹 교정</td>
+                            <td>치아색과 유사한 세라믹 재료 사용.</td>
+                            <td>400만원 ~ 600만원</td>
+                            <td>메탈보다 심미성이 우수함.</td>
+                            <td>메탈보다 가격이 비쌈, 장치 탈락 위험성.</td>
+                        </tr>
+                        <tr>
+                            <td>설측 교정</td>
+                            <td>장치를 치아 안쪽에 부착.</td>
+                            <td>600만원 ~ 800만원</td>
+                            <td>외부에서 장치가 전혀 보이지 않음 (최고의 심미성).</td>
+                            <td>가장 비싼 '비용', 발음 불편함, 양치 어려움.</td>
+                        </tr>
+                        <tr>
+                            <td>인비절라인 (투명 교정)</td>
+                            <td>투명한 교정 장치를 주기적으로 교체.</td>
+                            <td>500만원 ~ 800만원</td>
+                            <td>탈착 가능, 심미성 우수, 양치 편리함.</td>
+                            <td>착용 시간 엄수 필요, 난이도 높은 치료는 한계.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>
+                    치아교정은 장기 치료이므로, '치과 싼곳'만 찾을 것이 아니라 '치과 치료 장단점'을 정확히 이해하고 정기적인 검진이 가능한 병원을 선택해야 합니다.
+                </p>
+                <img src="https://via.placeholder.com/1000x300/F0F4F8/333?text=치과비용+절약+방법+인포그래픽" alt="치과비용 절약 팁 관련 이미지" style="width:100%; margin: 30px 0; border-radius: 8px;">
+
+                <h3 id="충치치료">충치치료 (레진, 인레이, 크라운) 비용 상세 분석</h3>
+                <p>
+                    충치치료는 충치의 진행 정도에 따라 치료 방법이 달라지며, '치료 종류별 금액' 차이가 가장 크게 발생하는 분야입니다. 초기 충치라면 레진 치료로 끝나지만, 신경까지 침범한 경우 신경치료 후 크라운을 씌워야 하므로 '비용'이 크게 상승합니다.
+                </p>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>치료 종류</th>
+                                <th>충치 진행도</th>
+                                <th>재료 및 특징</th>
+                                <th>평균 비용 (1개당)</th>
+                                <th>보험 적용 여부</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>레진 (Resin)</td>
+                                <td>초기/경미한 충치</td>
+                                <td>치아색과 유사한 재료로 충전, 심미성 우수.</td>
+                                <td>5만원 ~ 10만원</td>
+                                <td>부분 비급여 (영구치 레진 충전은 12세 이하 건강보험 적용)</td>
+                            </tr>
+                            <tr>
+                                <td>인레이 (Inlay)</td>
+                                <td>중기 충치 (씹는 면)</td>
+                                <td>본을 떠서 제작 후 접착, 내구성 우수. 금(골드) 인레이와 레진 인레이로 나뉨.</td>
+                                <td>15만원 ~ 30만원 (재료에 따라 다름)</td>
+                                <td>비급여</td>
+                            </tr>
+                            <tr>
+                                <td>크라운 (Crown)</td>
+                                <td>말기 충치 및 신경치료 후</td>
+                                <td>치아 전체를 씌우는 보철물. PFM, 골드, 지르코니아 등 재료 다양.</td>
+                                <td>30만원 ~ 60만원 (재료에 따라 다름)</td>
+                                <td>비급여 (일부 PFM 크라운은 급여 적용 가능)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>치과비용을 절약하기 위한 핵심 가이드</h3>
+                <p>
+                    치과 치료는 미루면 미룰수록 '비용'이 증가하는 특성이 있습니다. '치과비용 싼곳'을 찾기보다, 정기적인 검진과 아래의 절약 팁을 활용하는 것이 현명합니다.
+                </p>
+                <ol>
+                    <li><strong>정기적인 검진:</strong> 6개월마다 스케일링을 받고 정기 검진을 받으면 초기 충치를 발견하여 '저렴한' 레진 치료로 끝낼 수 있습니다.</li>
+                    <li><strong>치아 보험 활용:</strong> 만약 치아 보험을 보유하고 있다면, 임플란트나 크라운 등 고가 치료에 대한 '예상 비용'을 미리 확인하고 상담하세요.</li>
+                    <li><strong>정부 지원 사업 활용:</strong> 만 12세 이하 아동은 영구치 충치치료에 레진 보험 적용, 만 65세 이상은 임플란트 및 틀니 보험 적용 등 정부에서 제공하는 지원 제도를 꼭 확인하세요.</li>
+                </ol>
+            </div>
+        </section>
+        
+        <section class="content-section">
+            <div class="container">
+                <h2>자주 묻는 질문 (FAQ)</h2>
+                <div class="faq-item">
+                    <h3 id="q1">치과 치료 비용이 병원마다 다른 이유는 무엇인가요?</h3>
+                    <p>치과 치료 비용은 환자의 상태, 사용하는 재료(임플란트 픽스처 종류, 충치 치료 재료), 의료진의 경력과 숙련도, 병원의 위치(서울/지방), 건강보험 적용 여부 등 다양한 요인에 따라 달라집니다. 특히 비급여 항목은 병원별로 가격을 자유롭게 책정할 수 있어 가격 차이가 큽니다. '치과비용 싼곳'을 찾을 때 단순히 가격만 비교하면 안 되는 이유입니다.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 id="q2">임플란트 비용을 절약할 수 있는 방법이 있나요?</h3>
+                    <p>임플란트 비용을 절약하려면 만 65세 이상 국민건강보험 적용을 확인하고, 여러 치과에서 '견적'을 비교해 보세요. 또한, 치과 이벤트나 프로모션을 활용하거나, 치아 보험 가입을 고려할 수 있습니다. 다만, 가격이 '싼곳'을 무조건 선택하기보다, 의료진의 전문성과 사후 관리 시스템을 함께 고려하는 것이 중요합니다. '임플란트 후기'나 '내돈내산' 리뷰를 참고하는 것도 좋은 방법입니다.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 id="q3">치아 교정의 평균 비용과 기간은 어떻게 되나요?</h3>
+                    <p>치아 교정 비용은 교정 장치의 종류(메탈, 세라믹, 설측, 인비절라인 등)와 치료 난이도에 따라 크게 달라집니다. 평균적으로 메탈 교정은 300~500만 원, 인비절라인은 500~800만 원 선에서 형성됩니다. 치료 기간은 보통 1.5년~2년이며, 정밀 진단 후 정확한 '견적'을 받아보는 것이 좋습니다.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 id="q4">충치치료 비용은 왜 재료에 따라 가격 차이가 큰가요?</h3>
+                    <p>충치치료에 사용되는 재료는 아말감, 레진, 인레이, 크라운 등 다양합니다. 아말감은 건강보험 적용으로 저렴하지만 심미성이 떨어지고, 레진은 심미성이 뛰어나지만 비급여입니다. 인레이와 크라운은 충치 범위가 클 때 사용되며, 금(골드)이나 PFM(메탈+도자기) 등 재료에 따라 내구성, 심미성, 가격이 모두 달라집니다. 이 때문에 '치과 치료 장단점'을 비교하여 자신에게 맞는 재료를 선택해야 합니다.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 id="q5">치아 보험 가입, 장단점을 알려주세요.</h3>
+                    <p>치아 보험은 정기적인 검진이 필요한 분들에게 '장점'이 될 수 있습니다. 임플란트, 크라운, 인레이 등 비급여 치료의 '금액'을 정액으로 보장해 주기 때문에 고액의 치료비에 대한 부담을 줄일 수 있습니다. '단점'으로는 가입 후 일정 기간(면책 기간)이 지나야 보장받을 수 있고, 이미 충치나 질병이 있는 치아는 보장에서 제외되거나 보험료가 높아질 수 있습니다. '치아 보험 추천'은 개인의 구강 건강 상태와 필요한 보장에 따라 달라집니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section" style="padding: 50px 0;">
+            <div class="container">
+                <h2>더 많은 정보: 공인된 치과 정보 출처</h2>
+                <p>
+                    치과 치료에 대한 정확한 정보와 국민건강보험 적용 기준은 다음 공인된 사이트에서 확인할 수 있습니다. '치과비용'에 대한 궁금증을 해소하고 '내돈내산' 치료 후기를 참고할 때 신뢰할 수 있는 정보를 바탕으로 판단하세요.
+                </p>
+                <ul>
+                    <li><a href="https://www.hira.or.kr/" target="_blank">건강보험심사평가원 (HIRA)</a>: 비급여 진료비 항목별 '가격' 정보와 '평균 금액'을 확인할 수 있습니다.</li>
+                    <li><a href="https://www.mohw.go.kr/react/index.jsp" target="_blank">보건복지부 (Ministry of Health and Welfare)</a>: 치과 관련 정부 정책 및 국민건강보험 적용 기준을 안내합니다.</li>
+                    <li><a href="http://www.kda.or.kr/" target="_blank">대한치과의사협회 (Korean Dental Association)</a>: 치과 치료 정보 및 전문가 정보를 확인할 수 있습니다.</li>
+                    <li><a href="https://namu.wiki/w/%EC%B9%98%EA%B3%BC" target="_blank">나무위키 - 치과</a>: 치과 치료의 일반적인 정보와 종류, 역사 등을 참조할 수 있습니다.</li>
+                    <li><a href="https://www.nhis.or.kr/" target="_blank">국민건강보험공단</a>: 건강보험 적용 범위 및 본인부담금 기준을 확인하세요.</li>
+                </ul>
+                
+                <div class="consult-form-box" style="margin-top: 50px;">
+                    <h3>치과 치료, 지금 바로 '예상 금액' 견적 받기</h3>
+                    <form action="#" method="post">
+                        <label for="name2">이름</label>
+                        <input type="text" id="name2" placeholder="이름을 입력하세요" required>
+                        <label for="phone2">연락처</label>
+                        <input type="tel" id="phone2" placeholder="휴대폰 번호를 입력하세요" required>
+                        <label for="interest2">관심 치료 항목</label>
+                        <select id="interest2" required>
+                            <option value="">선택하세요</option>
+                            <option value="임플란트">임플란트</option>
+                            <option value="치아교정">치아교정</option>
+                            <option value="충치치료">충치치료</option>
+                            <option value="기타">기타</option>
+                        </select>
+                        <button type="submit" class="cta-btn">무료 상담 신청하고 예상 비용 확인하기</button>
+                    </form>
+                </div>
+            </div>
+        </section>
     </main>
-  </body>
-</html>
+
+    <script>
+        // FAQ 토글 기능 (사용자 경험 개선)
+        document.querySelectorAll('.faq-item h3').forEach(item => {
+            item.addEventListener('click', event => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+    </script>
+
+
+  
